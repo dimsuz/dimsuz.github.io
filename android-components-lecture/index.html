@@ -24,29 +24,29 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				  <section>
-              <h2 style="text-transform: none;">UI компоненты Android</h2>
-              <h2 style="text-transform: none;">ConstraintLayout</h2>
-          </section>
-          <section>
-              <h3>Иерархия View на экране</h3>
-              <img src="hierarchy.png" width="600" />
-          </section>
+				  <!-- <section>
+               <h2 style="text-transform: none;">UI компоненты Android</h2>
+               <h2 style="text-transform: none;">ConstraintLayout</h2>
+               </section>
+               <section>
+               <h3>Иерархия View на экране</h3>
+               <img src="hierarchy.png" width="600" />
+               </section> -->
 				  <section>
               <h3>Базовые компоненты</h3>
-              <p style="float: right;">
-                  <img alt="" src="frame_layout.svg" style="border: none;" />
+              <p id="layoutpic" style="float: right;" class="fade">
+                  <img id="layoutpicimg" src="frame_layout.svg" style="border: none; box-shadow: none;" />
               </p>
-              <p class="fragment fade-down" style="margin-right: 25%">View</p>
-              <p class="fragment fade-down" style="margin-right: 25%">ViewGroup</p>
-              <p class="fragment fade-down" style="margin-right: 25%">FrameLayout</p>
-              <p class="fragment fade-down" style="margin-right: 25%">LinearLayout</p>
-              <p class="fragment fade-down" style="margin-right: 25%">
-                  <span class="fragment strike">
+              <p id="view" class="fragment fade-down" style="margin-right: 25%">View</p>
+              <p id="viewgroup" class="fragment fade-down" style="margin-right: 25%">ViewGroup</p>
+              <p id="frame_layout" data-svg-file="frame_layout.svg" class="fragment fade-down" style="margin-right: 25%">FrameLayout</p>
+              <p id="linear_layout" data-svg-file="linear_layout.svg" class="fragment fade-down" style="margin-right: 25%">LinearLayout</p>
+              <p id="relative_layout" class="fragment fade-down" data-svg-file="constraint_layout.svg" style="margin-right: 25%">
+                  <span id="relative_layout_strike" data-svg-file="constraint_layout.svg" class="fragment strike">
                       RelativeLayout
                   </span>
               </span>
-              <p class="fragment fade-down" style="margin-right: 25%">ConstraintLayout</p>
+              <p id="constraint_layout" data-svg-file="constraint_layout.svg"  class="fragment fade-down" style="margin-right: 25%">ConstraintLayout</p>
           </section>
 			</div>
 		</div>
@@ -66,6 +66,46 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
-		</script>
+
+     var prevSvgFile = null
+
+     Reveal.addEventListener( 'fragmentshown', function( event ) {
+         if (!isLayoutFragment(event)) return
+         var layoutPicElem = document.getElementById("layoutpic")
+         /* if (event.fragment.id == "frame_layout") {
+          *     layoutPicElem.classList.add("visible")
+          * }
+          */
+         var layoutPicImgElem = document.getElementById("layoutpicimg")
+         var svgFile = event.fragment.getAttribute("data-svg-file")
+         if (svgFile != null && prevSvgFile != svgFile) {
+             layoutPicElem.classList.remove("visible")
+             setTimeout(function() {
+                 layoutPicImgElem.src = svgFile
+                 layoutPicElem.classList.add("visible")
+                 prevSvgFile = svgFile
+             }, prevSvgFile != null ? 200 : 0)
+         }
+     });
+     Reveal.addEventListener( 'fragmenthidden', function( event ) {
+         if (!isLayoutFragment(event)) return
+         if (event.fragment.id == "frame_layout") {
+             var layoutPicElem = document.getElementById("layoutpic")
+             layoutPicElem.classList.remove("visible")
+             prevSvgFile = null
+         }
+
+         var prevElem = event.fragment.previousElementSibling
+         var svgFile = prevElem != null ? prevElem.getAttribute("data-svg-file") : null
+         if (svgFile != null) {
+             var layoutPicImgElem = document.getElementById("layoutpicimg")
+             layoutPicImgElem.src = svgFile
+             prevSvgFile = svgFile
+         }
+     } );
+     function isLayoutFragment(event) {
+         return event.fragment.id !== "" && event.fragment.id !== undefined
+     }
+    </script>
 	</body>
 </html>
