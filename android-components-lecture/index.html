@@ -24,14 +24,27 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				  <!-- <section>
-               <h2 style="text-transform: none;">UI компоненты Android</h2>
-               <h2 style="text-transform: none;">ConstraintLayout</h2>
-               </section>
-               <section>
-               <h3>Иерархия View на экране</h3>
-               <img src="hierarchy.png" width="600" />
-               </section> -->
+          <section>
+              <section>
+                  <h2>Этапы View layout</h2>
+                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onMeasure(…)</p>
+                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onLayout(…)</p>
+                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onDraw(…)</p>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">View.onMeasure(…)</h3>
+                  <p>Вызывается, чтобы определить размеры текущего View и всех его детей</p>
+                  <img alt="" src="measure_example.svg" style="border: none; box-shadow: none;" />
+              </section>
+          </section>
+				  <section>
+              <h2 style="text-transform: none;">UI компоненты Android</h2>
+              <h2 style="text-transform: none;">ConstraintLayout</h2>
+          </section>
+          <section>
+              <h3>Иерархия View на экране</h3>
+              <img src="hierarchy.png" width="600" />
+          </section>
 				  <section>
               <h3>Базовые компоненты</h3>
               <p id="layoutpic" style="float: right;" class="fade">
