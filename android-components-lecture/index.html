@@ -24,19 +24,6 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-          <section>
-              <section>
-                  <h2>Этапы View layout</h2>
-                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onMeasure(…)</p>
-                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onLayout(…)</p>
-                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onDraw(…)</p>
-              </section>
-              <section>
-                  <h3 style="text-transform: none;">View.onMeasure(…)</h3>
-                  <p>Вызывается, чтобы определить размеры текущего View и всех его детей</p>
-                  <img alt="" src="measure_example.svg" style="border: none; box-shadow: none;" />
-              </section>
-          </section>
 				  <section>
               <h2 style="text-transform: none;">UI компоненты Android</h2>
               <h2 style="text-transform: none;">ConstraintLayout</h2>
@@ -60,6 +47,43 @@
                   </span>
               </span>
               <p id="constraint_layout" data-svg-file="constraint_layout.svg"  class="fragment fade-down" style="margin-right: 25%">ConstraintLayout</p>
+          </section>
+          <section>
+              <section>
+                  <h2>Этапы View layout</h2>
+                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onMeasure(…)</p>
+                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onLayout(…)</p>
+                  <p class="fragment fade-down" style="font-size: 1.2em;">View.onDraw(…)</p>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">View.onMeasure(…)</h3>
+                  <p>Вызывается, чтобы определить размеры данного View и всех его детей</p>
+                  <img alt="" src="measure_example.svg" style="border: none; box-shadow: none;" />
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">View.onLayout(…)</h3>
+                  <p>Вызывается, чтобы назначить позицию и размеры всем детям данного View</p>
+                  <img alt="" src="layout_example.svg" style="border: none; box-shadow: none;" />
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">View.onDraw(…)</h3>
+                  <p>Вызывается, чтобы View выполнил отрисовку своего содержимого</p>
+                  <img alt="" src="draw_example.svg" style="border: none; box-shadow: none;" />
+              </section>
+          </section>
+          <section>
+              <h3 style="text-transform: none;">onMeasure, onLayout, onDraw и производительность</h3>
+              <div id="layouts_all">
+                  <div>
+                      <p>FrameLayout</p>
+                      <p>LinearLayout</p>
+                      <p>RelativeLayout</p>
+                      <p>ConstraintLayout</p>
+                  </div>
+                  <p class="side_image" style="margin-left: 1em;">
+                      <img alt="" src="layouts_all.svg" width="400em;" style="border: none; box-shadow: none;" />
+                  </p>
+              </div>
           </section>
 			</div>
 		</div>

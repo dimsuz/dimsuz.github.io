@@ -1561,3 +1561,10 @@ body {
 .reveal .slides section #layoutpic.visible {
     opacity: 1;
     visibility: inherit; }
+
+.reveal .slides section #layouts_all {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
