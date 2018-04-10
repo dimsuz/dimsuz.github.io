@@ -72,7 +72,15 @@
               </section>
           </section>
           <section>
-              <h3 style="text-transform: none;">onMeasure, onLayout, onDraw и производительность</h3>
+          <h3 style="text-transform: none;">Основные факторы, влияющие на производительность layout</h3>
+          <ul>
+              <li>Вложенность</li>
+              <li>Сложность onMeasure и onLayout <span style="color: gray"><br>(особенно &ldquo;топовых&rdquo; View)</span></li>
+              <li>Аллокации в onMeasure, onLayout, onDraw</li>
+          </ul>
+          </section>
+          <section>
+              <h3 style="text-transform: none;">Анализ производительности базовых ViewGroup</h3>
               <div id="layouts_all">
                   <div>
                       <p>FrameLayout</p>
@@ -85,10 +93,10 @@
                   </p>
               </div>
           </section>
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<script src="lib/js/head.min.js"></script>
+    <script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
 
 		<script>
