@@ -72,12 +72,12 @@
               </section>
           </section>
           <section>
-          <h3 style="text-transform: none;">Основные факторы, влияющие на производительность layout</h3>
-          <ul>
-              <li>Вложенность</li>
-              <li>Сложность onMeasure и onLayout <span style="color: gray"><br>(особенно &ldquo;топовых&rdquo; View)</span></li>
-              <li>Аллокации в onMeasure, onLayout, onDraw</li>
-          </ul>
+              <h3 style="text-transform: none;">Основные факторы, влияющие на производительность layout</h3>
+              <ul>
+                  <li>Сложность onMeasure и onLayout <span style="color: gray"><br>(особенно &ldquo;топовых&rdquo; View)</span></li>
+                  <li>Аллокации в onMeasure, onLayout, onDraw</li>
+                  <li>Вложенность</li>
+              </ul>
           </section>
           <section>
               <h3 style="text-transform: none;">Анализ производительности базовых ViewGroup</h3>
@@ -92,6 +92,127 @@
                       <img alt="" src="layouts_all.svg" width="400em;" style="border: none; box-shadow: none;" />
                   </p>
               </div>
+          </section>
+          <section>
+              <section>
+                  <h3 style="text-transform: none;">ConstraintLayout</h3>
+                  <ul>
+                      <li>Альтернатива RelativeLayout ⟶ Гибкий</li>
+                      <li>Минимизирует количество onMeasure<span style="color: gray"><br>(не больше 2-х)</span></li>
+                      <li>Плоская иерархия</li>
+                  </ul>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Относительное позиционирование</h3>
+                  <img src="relative-positioning.png">
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/buttonA" ... /&gt;
+&lt;Button android:id="@+id/buttonB" ...
+  app:layout_constraintLeft_toRightOf="@+id/buttonA" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Центрирование</h3>
+                  <img src="centering-positioning.png">
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/button" ...
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toRightOf="parent" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Центрирование + bias</h3>
+                  <img src="centering-positioning-bias.png">
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/button" ...
+  app:layout_constraintHorizontal_bias="0.3"
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toRightOf="parent" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Match constraints</h3>
+                  <img src="dimension-match-constraints.png">
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/button" ...
+  android:layout_width="wrap_content"
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toRightOf="parent" /&gt;
+                  </code></pre>
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/button" ...
+  android:layout_width="0dp"
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toRightOf="parent" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Percent dimensions</h3>
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/button" ...
+  android:layout_width="0dp"
+  app:layout_constraintWidth_percent="0.3"
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toRightOf="parent" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Ratio</h3>
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/button" ...
+  android:layout_width="0dp"
+  app:layout_constraintDimensionRatio="1:1" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Chains</h3>
+                  <img src="chains.png">
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/buttonA" ...
+  app:layout_constraintLeft_toLeftOf="parent"
+  app:layout_constraintRight_toLeftOf=@+id/buttonB" /&gt;
+&lt;Button android:id="@+id/buttonB" ...
+  app:layout_constraintLeft_toRightOf="@+id/buttonA"
+  app:layout_constraintRight_toRightOf="parent" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Chain styles</h3>
+                  <img src="chains-styles.png">
+                  <pre><code class="xml" data-trim>
+&lt;Button android:id="@+id/buttonA" ...
+  app:layout_constraintHorizontal_chainStyle="spread"
+  app:layout_constraintHorizontal_chainStyle="spread_inside"
+  app:layout_constraintHorizontal_chainStyle="packed"
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Helper object: Guideline</h3>
+                  <pre><code class="xml" data-trim>
+&lt;android.support.constraint.Guideline
+  android:id="@+id/guideline"
+  app:layout_constraintGuide_begin="100dp"
+  android:orientation="vertical"/&gt;
+
+&lt;Button
+  android:id="@+id/button"
+  app:layout_constraintLeft_toLeftOf="@+id/guideline" /&gt;
+                  </code></pre>
+              </section>
+              <section>
+                  <h3 style="text-transform: none;">Helper object: Barrier</h3>
+                  <img src="barrier-end.png">
+                  <img src="barrier-adapt.png">
+                  <pre><code class="xml" data-trim>
+&lt;android.support.constraint.Barrier
+  android:id="@+id/barrier"
+  app:barrierDirection="end"
+  app:constraint_referenced_ids="button1,button2" /&gt;
+                  </code></pre>
+              </section>
+          </section>
+          <section>
+              <h2>Финиш</h2>
           </section>
       </div>
     </div>
