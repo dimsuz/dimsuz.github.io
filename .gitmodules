@@ -1,0 +1,3 @@
+[submodule "pathfinder-talk"]
+	path = pathfinder-talk
+	url = https://github.com/dimsuz/pathfinder-talk
